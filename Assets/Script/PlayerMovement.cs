@@ -25,48 +25,36 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // If we press the key W
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             // The Trigger ForwardAnimation will play
+            anim.enabled = true;
             anim.SetTrigger("ForwardAnimation");
         }
-        // If we release the key W
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            anim.SetTrigger("ForwardAnimationPause");
-        }
         // If we press the key A
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             // The Trigger ForwardAnimation will play
+            anim.enabled = true;
             anim.SetTrigger("LeftAnimation");
         }
-        // If we release the key A
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            anim.SetTrigger("LeftAnimationPause");
-        }
         // If we press the key S
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             // The Trigger ForwardAnimation will play
+            anim.enabled = true;
             anim.SetTrigger("BackwardsAnimation");
         }
-        // If we release the key S
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            anim.SetTrigger("BackwardsAnimationPause");
-        }
         // If we press the key D
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             // The Trigger ForwardAnimation will play
+            anim.enabled = true;
             anim.SetTrigger("RightAnimation");
         }
-        // If we release the key D
-        if (Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
         {
-            anim.SetTrigger("RightAnimationPause");
+            anim.enabled = false;
         }
     }
     // Fixed update for physics calculations.
