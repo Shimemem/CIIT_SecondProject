@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementInput;
     // Access our Animator to play Animations
     public Animator anim;
+    //
+    public int coinsCount;
      
     // Start is called before the first frame update
     void Start()
@@ -24,38 +26,42 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If we press the key W
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            // The Trigger ForwardAnimation will play
-            anim.enabled = true;
-            anim.SetTrigger("ForwardAnimation");
-        }
-        // If we press the key A
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            // The Trigger ForwardAnimation will play
-            anim.enabled = true;
-            anim.SetTrigger("LeftAnimation");
-        }
-        // If we press the key S
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            // The Trigger ForwardAnimation will play
-            anim.enabled = true;
-            anim.SetTrigger("BackwardsAnimation");
-        }
-        // If we press the key D
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            // The Trigger ForwardAnimation will play
-            anim.enabled = true;
-            anim.SetTrigger("RightAnimation");
-        }
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
-        {
-            anim.enabled = false;
-        }
+        //// If we press the key W
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    // The Trigger ForwardAnimation will play
+        //    anim.enabled = true;
+        //    anim.SetTrigger("ForwardAnimation");
+        //}
+        //// If we press the key A
+        //if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    // The Trigger ForwardAnimation will play
+        //    anim.enabled = true;
+        //    anim.SetTrigger("LeftAnimation");
+        //}
+        //// If we press the key S
+        //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    // The Trigger ForwardAnimation will play
+        //    anim.enabled = true;
+        //    anim.SetTrigger("BackwardsAnimation");
+        //}
+        //// If we press the key D
+        //if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    // The Trigger ForwardAnimation will play
+        //    anim.enabled = true;
+        //    anim.SetTrigger("RightAnimation");
+        //}
+        //if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+        //{
+        //    anim.enabled = false;
+        //}
+
+        anim.SetFloat("Horizontal", movementInput.x);
+        anim.SetFloat("Vertical", movementInput.y);
+        anim.SetFloat("Speed", movementInput.sqrMagnitude);
     }
     // Fixed update for physics calculations.
     private void FixedUpdate()
@@ -74,5 +80,16 @@ public class PlayerMovement : MonoBehaviour
     {
         // If I Press A =
         movementInput = inputValue.Get<Vector2>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coins"))
+        {
+            Destroy(collision.gameObject);
+            coinsCount++;
+
+
+        }
     }
 }
