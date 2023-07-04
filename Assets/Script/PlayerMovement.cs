@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
     //
     public int coinsCount;
+    public int Health;
+    public int Speed;
      
     // Start is called before the first frame update
     void Start()
@@ -88,8 +90,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
             coinsCount++;
-
-
+        }
+        if (collision.CompareTag("Speed"))
+        {
+            Transform col = collision.transform;
+            col.transform.position = new Vector2(999, 999);
+        }
+        if (collision.CompareTag("HP"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }
