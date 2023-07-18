@@ -13,7 +13,7 @@ public class Collectibles : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        baseMovespeed = player.Speed;
+        baseMovespeed = player.moveSpeed;
     }
 
 
@@ -21,7 +21,7 @@ public class Collectibles : MonoBehaviour
     {
         if (Speed)
         {
-            player.Speed += speedBoost;
+            player.moveSpeed += speedBoost;
             StartCoroutine(BackToBaseSpeed());
         }
 
@@ -34,7 +34,7 @@ public class Collectibles : MonoBehaviour
     IEnumerator BackToBaseSpeed()
     {
         yield return new WaitForSeconds(duration);
-        player.Speed = baseMovespeed;
+        player.moveSpeed = baseMovespeed;
     }
 
     // Update is called once per frame

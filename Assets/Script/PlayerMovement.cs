@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     // Speed (How fast the player will navigate on our Game)
-    public float moveSpeed;
+    public int moveSpeed;
     // RigidBody (Handles Physics)
     public Rigidbody2D rigidBody;
     // Dictates where the player is moving
